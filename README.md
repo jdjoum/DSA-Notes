@@ -6,6 +6,7 @@
   2. [What is an Algorithm?](#what-is-an-algorithm)
   3. [Why Should You Learn Data Structures and Algorithms?](#why-should-you-learn-data-structures-and-algorithms)
   4. [Stacks](#stacks)
+  5. [Queues](#queues)
   
 
 ## What is a Data Structure?
@@ -127,7 +128,7 @@
 
   A **Stack** is a linear data structure that follows the Last In, First Out (LIFO) principle. This means that the last element added to the stack is the first one to be removed. It's similar to a stack of plates—only the top plate can be removed, and new plates are added to the top.
 
-  Key Concepts of a Stack
+  <ins>Key Operations</ins>
 
   1. Push: Add an element to the top of the stack.
   2. Pop: Remove and return the element from the top of the stack.
@@ -195,7 +196,173 @@
 
   Stacks are essential for many computing problems, especially those that require managing data in a LIFO order. Their simplicity, coupled with efficiency in performing basic operations, makes them a fundamental tool in algorithms, system design, and software development.
 
+## Queues
 
+  <ins>Comprehensive Overview of the Queue Data Structure</ins>
 
+  A **Queue** is a linear data structure that follows the First In, First Out (FIFO) principle. This means that the element added first will be removed first, similar to a line of people waiting for service.
 
+  <ins>Key Operations</ins>
+
+  1. Enqueue (Insertion): Adds an element to the rear (or back) of the queue.
+  2. Dequeue (Removal): Removes an element from the front of the queue.
+  3. Peek (Front): Retrieves the element at the front of the queue without removing it.
+  4. IsEmpty: Checks if the queue is empty.
+  5. Size: Returns the number of elements in the queue.
+
+  <ins>Characteristics</ins>
+
+  - FIFO: The first element enqueued will be the first one dequeued.
+  - Front and Rear: The queue has two ends — the front where elements are removed, and the rear where elements are added.
+
+  <ins>Types of Queues</ins>
+
+  1. Simple Queue: Also known as a linear queue, elements are inserted from the rear and removed from the front. Once full, it cannot reuse space.
+  2. Circular Queue: Overcomes the limitation of the simple queue by connecting the rear to the front, forming a circular structure. This allows reuse of space that was freed by dequeuing elements.
+  3. Priority Queue: Elements are dequeued based on priority rather than their insertion order. Each element has a priority, and the one with the highest priority is dequeued first.
+  4. Double-Ended Queue (Deque): Elements can be added or removed from both the front and rear, making it more flexible than a standard queue.
+
+  <ins>Use Cases</ins>
+
+  1. CPU Scheduling: Queues manage processes in a multitasking system.
+  2. I/O Buffers: Queues handle data between slower and faster devices.
+  3. Breadth-First Search (BFS): BFS uses a queue to explore nodes level by level.
+  4. Task Scheduling: When tasks are handled in the order they arrive, queues manage them efficiently.
+  5. Print Spooling: Queues handle print jobs, ensuring documents are printed in the order they were submitted.
+
+  <ins>Queue Implementation</ins>
+
+  Queues can be implemented using various data structures, such as:
+
+  1. Arrays: Easy to implement but can be inefficient in terms of memory due to fixed size.
+  2. Linked List: Efficient in terms of memory and dynamic resizing, avoiding the overflow problem of arrays.
+  3. Stacks: A queue can also be implemented using two stacks to reverse the LIFO behavior of stacks into FIFO for the queue.
+
+  <ins>Time Complexity</ins>
+
+  - Enqueue: O(1) (amortized O(1) for circular queues or queues implemented using dynamic arrays)
+  - Dequeue: O(1)
+  - Peek: O(1)
+  - IsEmpty/Size: O(1)
+
+  <ins>Real-World Analogy</ins>
+
+  Consider a line at a movie theater. The first person in line is served first, and new people join at the end of the line.
+
+  <ins>Queue Implementation Using Python List</ins>
+
+  Python lists can be used to implement a queue, but appending to the end and removing from the front can be inefficient for large queues due to the shifting of elements.
+
+  ```
+  class QueueList:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, item):
+        # Add an item to the rear of the queue
+        self.queue.append(item)
+        print(f"Enqueued: {item}")
+
+    def dequeue(self):
+        if self.is_empty():
+            return "Queue is empty"
+        # Remove an item from the front of the queue
+        return self.queue.pop(0)
+
+    def peek(self):
+        if self.is_empty():
+            return "Queue is empty"
+        # Return the front element without removing it
+        return self.queue[0]
+
+    def is_empty(self):
+        # Check if the queue is empty
+        return len(self.queue) == 0
+
+    def size(self):
+        # Return the number of items in the queue
+        return len(self.queue)
+
+  # Example usage
+  q = QueueList()
+  q.enqueue(10)
+  q.enqueue(20)
+  q.enqueue(30)
+  print(f"Front item: {q.peek()}")
+  print(f"Dequeued: {q.dequeue()}")
+  print(f"Queue size: {q.size()}")
+  ```
+
+  Output:
+
+  ```
+  Enqueued: 10
+  Enqueued: 20
+  Enqueued: 30
+  Front item: 10
+  Dequeued: 10
+  Queue size: 2
+  ```
+
+  <ins>Queue Implementation Using Python `collections.deque`</ins>
+
+  For a more efficient queue, the collections.deque can be used, which provides O(1) time complexity for both append and pop operations from either end.
+
+  ```
+  from collections import deque
+
+  class QueueDeque:
+      def __init__(self):
+          self.queue = deque()
+
+      def enqueue(self, item):
+          # Add an item to the rear of the queue
+          self.queue.append(item)
+          print(f"Enqueued: {item}")
+
+      def dequeue(self):
+          if self.is_empty():
+              return "Queue is empty"
+          # Remove an item from the front of the queue
+          return self.queue.popleft()
+
+      def peek(self):
+          if self.is_empty():
+              return "Queue is empty"
+          # Return the front element without removing it
+          return self.queue[0]
+
+      def is_empty(self):
+          # Check if the queue is empty
+          return len(self.queue) == 0
+
+      def size(self):
+          # Return the number of items in the queue
+          return len(self.queue)
+
+  # Example usage
+  q = QueueDeque()
+  q.enqueue(10)
+  q.enqueue(20)
+  q.enqueue(30)
+  print(f"Front item: {q.peek()}")
+  print(f"Dequeued: {q.dequeue()}")
+  print(f"Queue size: {q.size()}")
+  ```
+
+  Output:
+
+  ```
+  Enqueued: 10
+  Enqueued: 20
+  Enqueued: 30
+  Front item: 10
+  Dequeued: 10
+  Queue size: 2
+  ```
+
+  <ins>Differences Between List and `deque`:</ins>
+
+  - Efficiency: deque is more efficient for queue operations because it allows O(1) operations for both enqueue and dequeue.
+  - List: When using a list, dequeuing requires O(n) because removing the first element requires shifting all the other elements forward.
 
