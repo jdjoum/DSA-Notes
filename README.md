@@ -7,6 +7,7 @@
   3. [Why Should You Learn Data Structures and Algorithms?](#why-should-you-learn-data-structures-and-algorithms)
   4. [Stacks](#stacks)
   5. [Queues](#queues)
+  6. [Priority Queues (Heaps)](#priority-queues-heaps)
   
 
 ## What is a Data Structure?
@@ -366,3 +367,40 @@
   - Efficiency: deque is more efficient for queue operations because it allows O(1) operations for both enqueue and dequeue.
   - List: When using a list, dequeuing requires O(n) because removing the first element requires shifting all the other elements forward.
 
+## Priority Queues (Heaps)
+
+  <ins>Comprehensive Overview of the Priority Queue (Heap) Data Structure</ins>
+
+  A **Priority Queue** (often implemented as a Heap) is a data structure that stores elements such that the element with the highest priority is always accessible at the front of the queue. It supports efficient retrieval of the highest (or lowest) priority element.
+
+  <ins>Key Concepts</ins>
+
+  1. Priority: Each element has an associated priority. The priority queue serves elements based on their priority rather than their order of insertion.
+  2. Min-Heap vs Max-Heap:
+  - In a Min-Heap, the smallest (or highest priority) element is at the top.
+  - In a Max-Heap, the largest (or highest priority) element is at the top.
+  3. Heap Property: Heaps maintain a complete binary tree structure where:
+  - Min-Heap: Every parent node has a value less than or equal to its children.
+  - Max-Heap: Every parent node has a value greater than or equal to its children.
+
+<ins>Key Operations</ins>
+
+1. Insert (Push):
+- Adds an element to the priority queue.
+- Complexity: O(log n), since the heap property must be maintained (involves "bubbling up" the newly inserted element).
+2. Extract Max/Min (Pop):
+- Removes and returns the highest (or lowest) priority element.
+- Complexity: O(log n), as the heap needs to be restructured after removal (involves "bubbling down" the last element to maintain the heap property).
+3. Peek (Top):
+- Retrieves the element with the highest (or lowest) priority without removing it.
+- Complexity: O(1), as the top element is always at the root of the heap.
+4. Decrease/Increase Key:
+- Changes the priority of an element.
+- Complexity: O(log n), since the heap property must be restored (either by bubbling up or down).
+5. Heapify:
+- Converts an arbitrary array into a heap.
+- Complexity: O(n).
+
+<ins>Conclusion</ins>
+
+Priority queues (heaps) are efficient for scenarios requiring frequent access to the highest or lowest priority element. They are widely used in algorithms and applications like graph traversal, scheduling, and event-driven simulations. The binary heap provides a good balance between simplicity and performance, while specialized heaps like the Fibonacci heap offer performance boosts for more complex operations.
