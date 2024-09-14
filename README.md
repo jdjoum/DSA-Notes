@@ -8,6 +8,7 @@
   4. [Stacks](#stacks)
   5. [Queues](#queues)
   6. [Priority Queues (Heaps)](#priority-queues-heaps)
+  7. [Linked Lists](#linked-lists)
   
 
 ## What is a Data Structure?
@@ -404,3 +405,115 @@
   <ins>Conclusion</ins>
 
   Priority queues (heaps) are efficient for scenarios requiring frequent access to the highest or lowest priority element. They are widely used in algorithms and applications like graph traversal, scheduling, and event-driven simulations. The binary heap provides a good balance between simplicity and performance, while specialized heaps like the Fibonacci heap offer performance boosts for more complex operations.
+
+## Linked Lists
+
+  A **Linked List** is a linear data structure where elements, called nodes, are not stored in contiguous memory locations. Each node consists of two parts:
+  
+  1. Data: The value stored in the node.
+  2. Pointer (or Reference): A reference to the next node in the sequence.
+
+  <ins>Types of Linked Lists:</ins>
+  
+  1. Singly Linked List:
+  - Each node contains data and a single pointer to the next node.
+  - Last node points to `null` (or `None` in Python) to indicate the end of the list.
+
+  Structure:
+  ```
+  [Data | Next] -> [Data | Next] -> [Data | Next] -> null
+  ```
+
+  2. Doubly Linked List:
+  - Each node contains data, a pointer to the next node, and a pointer to the previous node.
+  - Enables traversal in both directions (forward and backward).
+
+  Structure:
+  ```
+  null <- [Prev | Data | Next] <-> [Prev | Data | Next] <-> [Prev | Data | Next] -> null
+  ```
+
+  3. Circular Linked List:
+  - The last node points back to the first node, forming a circular chain.
+  - Can be either singly or doubly linked.
+
+  Structure:
+  ```
+  [Data | Next] -> [Data | Next] -> [Data | Next] --\
+     ^                                            |
+     \--------------------------------------------/
+  ```
+
+  <ins>Operations on Linked Lists:</ins>
+
+  1. Insertion:
+  - Can be done at the head, tail, or any specific position.
+  - Time complexity:
+    - O(1) for insertion at the head.
+    - O(n) for insertion at a specific position or tail (due to traversal).
+
+  2. Deletion:
+  - Can remove nodes from the head, tail, or any specific position.
+  - Time complexity:
+    - O(1) for deletion at the head.
+    - O(n) for deletion at a specific position or tail.
+
+  3. Traversal:
+  - To access or print all nodes in the list, you traverse from the head node to the last node.
+  - Time complexity: O(n).
+
+  4. Searching:
+  - Searching for a node involves traversing through the list.
+  - Time complexity: O(n).
+
+  <ins>Advantages of Linked Lists:</ins>
+  - Dynamic Size: Unlike arrays, linked lists do not need a predefined size. Memory is allocated dynamically as nodes are added.
+  - Efficient Insertions/Deletions: Inserting or deleting a node at the beginning is O(1), whereas in an array, it may involve shifting elements.
+
+  <ins>Disadvantages of Linked Lists:</ins>
+  - Memory Overhead: Each node requires additional memory for storing the pointer(s).
+  - Sequential Access: Linked lists do not provide random access like arrays. To access a particular node, traversal from the head is necessary.
+  - Cache Unfriendliness: Due to non-contiguous memory allocation, linked lists do not benefit as much from modern CPU caches compared to arrays.
+
+  <ins>Common Use Cases:</ins>
+  - Dynamic data structures: Suitable for situations where the size of the structure is unknown in advance.
+  - Undo functionality: In applications like text editors, where you may want to revert to the previous state (can be implemented using doubly linked lists).
+  - Circular buffers: For tasks like memory management or scheduling.
+  - To implement stacks or queues.
+  - For GPS navigation.
+  - For a music playlist.
+
+  <ins>Example of a Singly Linked List in Python:</ins>
+  ```
+  class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+  class LinkedList:
+      def __init__(self):
+          self.head = None
+
+      # Insertion at the head
+      def insert_at_head(self, data):
+          new_node = Node(data)
+          new_node.next = self.head
+          self.head = new_node
+
+      # Traversal
+      def print_list(self):
+          current = self.head
+          while current:
+              print(current.data, end=" -> ")
+              current = current.next
+          print("None")
+
+  # Usage
+  ll = LinkedList()
+  ll.insert_at_head(3)
+  ll.insert_at_head(2)
+  ll.insert_at_head(1)
+  ll.print_list()  # Output: 1 -> 2 -> 3 -> None
+  ```
+
+  This example demonstrates a simple singly linked list with insertion at the head and traversal.
