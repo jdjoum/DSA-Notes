@@ -9,6 +9,7 @@
   5. [Queues](#queues)
   6. [Priority Queues (Heaps)](#priority-queues-heaps)
   7. [Linked Lists](#linked-lists)
+  8. [Dynamic Arrays](#dynamic-arrays)
   
 
 ## What is a Data Structure?
@@ -517,3 +518,64 @@
   ```
 
   This example demonstrates a simple singly linked list with insertion at the head and traversal.
+
+## Dynamic Arrays
+
+  A **dynamic array** is a data structure that provides a resizable array-like interface. Unlike static arrays, which have a fixed size, dynamic arrays can grow and shrink in response to insertions and deletions of elements. Here’s a detailed overview of its characteristics, operations, and underlying mechanics:
+
+  1. Basic Structure
+  
+  - A dynamic array starts with a fixed initial size. As elements are added, the array might eventually reach its capacity. When this happens, the dynamic array allocates a new, larger array (usually with a size double the original), copies over the elements, and continues inserting. The old array is then deallocated.
+
+  2. Key Properties
+
+  - Capacity: The total size of the allocated memory block (often larger than the actual number of elements stored).
+  - Size: The current number of elements stored in the array.
+  - Resizing: When the size exceeds the capacity, the array is resized to accommodate more elements.
+
+  3. Common Operations
+
+  - Accessing elements: O(1) time complexity. Accessing any element by index is instantaneous since dynamic arrays use contiguous memory, just like static arrays.
+  - Appending an element: Typically O(1) amortized. When the array has space, appending is O(1). However, when resizing is required, the operation takes O(n) because every element needs to be copied to the new array.
+  - Inserting elements: O(n) in the worst case. Inserting into the middle or the front of the array requires shifting elements, which takes O(n).
+  - Deleting elements: O(n). Similar to insertion, elements need to be shifted to fill the gap left by the deleted element.
+  - Resizing: When the array is full, a new array (usually double the size) is allocated, and all elements are copied over, resulting in an O(n) time complexity for that operation.
+
+  4. Amortized Time Complexity
+
+  - While appending elements might trigger a resize, which is O(n), the overall cost of appending multiple elements averages out. This is because doubling the capacity happens infrequently (after every n inserts). This leads to an amortized time complexity of O(1) for appending elements.
+
+  5. Shrinkage
+
+  - Some dynamic arrays may shrink when elements are removed to avoid wasting memory. This might happen when the array’s size falls below a certain threshold, such as one-fourth of the capacity. The shrinking process also involves allocating a new, smaller array and copying elements, similar to how it grows.
+
+  6. Memory Allocation
+
+  - Dynamic arrays rely on **heap memory** for their dynamic nature, allowing them to grow as needed. However, resizing can lead to a performance hit due to the overhead of memory allocation and copying elements.
+
+  7. Advantages
+
+  - Flexibility: Dynamic arrays can grow and shrink as needed, unlike static arrays.
+  - Random Access: Constant-time access to any element by index.
+  - Ease of Use: Especially in higher-level languages, dynamic arrays abstract away the complexity of memory management.
+
+  8. Disadvantages
+
+  - Resizing Cost: Occasionally, resizing can be expensive in terms of time.
+  - Wasted Space: Dynamic arrays typically allocate more space than needed to prepare for future growth, leading to potential memory wastage.
+  - Shifting Cost: Inserting or deleting elements from anywhere other than the end of the array is inefficient because of the need to shift elements.
+
+  9. Dynamic Array in Programming Languages
+
+  - C++: `std::vector` is a dynamic array that handles resizing automatically.
+  - Java: `ArrayList` is a resizable array implementation.
+  - Python: Lists in Python are dynamic arrays under the hood.
+
+  10. Applications
+
+  Dynamic arrays are widely used in scenarios requiring frequent insertion, deletion, and resizing of elements, such as:
+  - Implementing stacks, queues, and other dynamic data structures.
+  - Storing collections of items that may change in size over time (e.g., dynamic list of items in a UI, dynamic buffers).
+
+  In summary, dynamic arrays provide a balance between the memory efficiency of static arrays and the flexibility of linked lists, making them a versatile choice for many algorithms and applications.
+
