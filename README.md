@@ -10,6 +10,7 @@
   6. [Priority Queues (Heaps)](#priority-queues-heaps)
   7. [Linked Lists](#linked-lists)
   8. [Dynamic Arrays](#dynamic-arrays)
+  9. [Big O Notation](#big-o-notation)
   
 
 ## What is a Data Structure?
@@ -579,3 +580,54 @@
 
   In summary, dynamic arrays provide a balance between the memory efficiency of static arrays and the flexibility of linked lists, making them a versatile choice for many algorithms and applications.
 
+## Big O Notation
+
+  **Big O Notation** is a mathematical concept used in computer science to describe the efficiency of algorithms, particularly in terms of their time complexity and space complexity. It provides a high-level understanding of how an algorithm's performance scales as the size of the input increases. Here's a breakdown:
+
+  1. Purpose of Big O Notation
+  - Big O measures the upper bound (worst-case scenario) of an algorithm’s performance. It doesn't provide an exact number of operations but rather a classification of the growth rate of the function based on the size of the input (denoted as `n`).
+
+  2. Types of Complexity
+  - Time Complexity: Measures the time an algorithm takes to complete as a function of the input size.
+  - Space Complexity: Measures the amount of memory an algorithm uses as a function of the input size.
+
+  3. Common Big O Notations
+  
+  | Big O Notation | Name | Description |
+  | ---------------|------|-------------|
+  | O(1) | Constant Time | The algorithm's performance is independent of the input size. |
+  | O(log(n)) | Logarithmic Time | Performance increases logarithmically as the input size grows (e.g., binary search). |
+  | O(n) | Linear Time | Performance grows linearly with the input size (e.g., iterating over an array). |
+  | O(nlog(n)) | Log-Linear Time | Common in efficient sorting algorithms like mergesort or heapsort. |
+  | O(n^2) | Quadratic Time | Performance is proportional to the square of the input size (e.g., bubble sort). |
+  | O(2^n) | Exponential Time | Performance doubles with each addition to the input size (e.g., recursive algorithms). |
+  | O(n!) | Factorial Time | Performance increases factorially, often seen in brute force solutions for permutation problems. |
+
+  4. How to Analyze Big O
+
+  - Key factors to consider:
+    - Loops: A single loop over n elements is O(n). Nested loops typically increase the time complexity (e.g., a loop within a loop is O(n²)).
+    - Recursive Algorithms: Analyze recursive calls to determine the overall complexity. Exponential growth often arises from recursive algorithms that make multiple calls per level.
+    - Ignoring Constants: Big O ignores constant factors because they don’t significantly affect growth as the input size becomes large. For example, O(2n) simplifies to O(n).
+
+  - Example Analysis:
+    - Linear Search: Iterates through each element once, so the time complexity is O(n).
+    - Binary Search: Divides the problem size by half each step, leading to O(log n) time complexity.
+    - Bubble Sort: Compares each pair of elements repeatedly, leading to O(n²) complexity.
+
+  5. Best, Worst, and Average Case
+  - Best Case: The ideal scenario for the algorithm.
+  - Worst Case: The worst performance scenario, typically what Big O focuses on.
+  - Average Case: The expected scenario under typical conditions.
+
+  6. Comparing Algorithms
+
+  - Big O Notation allows us to compare the relative performance of different algorithms. For example:
+    - A binary search with O(log n) is much more efficient than a linear search with O(n) for large datasets.
+    - A quicksort algorithm has a best-case time complexity of O(n log n), which is generally faster than bubble sort, which is O(n²).
+
+  7. Limitations of Big O
+  - Practical considerations: Big O does not account for constant factors, hardware differences, or specific input cases.
+  - Asymptotic behavior: It focuses only on large input sizes, which might not be relevant for small or practical inputs.
+
+  Big O is an essential tool in understanding and comparing algorithms, offering insight into how well an algorithm scales as the input size increases.
