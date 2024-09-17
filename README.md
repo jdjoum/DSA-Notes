@@ -11,8 +11,8 @@
   7. [Linked Lists](#linked-lists)
   8. [Dynamic Arrays](#dynamic-arrays)
   9. [Big O Notation](#big-o-notation)
+  10. [Linear Search](#linear-search)
   
-
 ## What is a Data Structure?
 
   A **data structure** is a way of organizing and storing data so that it can be accessed and modified efficiently. Different types of data structures are designed to suit different kinds of operations and performance requirements, making them fundamental to computer science and software development.
@@ -631,3 +631,66 @@
   - Asymptotic behavior: It focuses only on large input sizes, which might not be relevant for small or practical inputs.
 
   Big O is an essential tool in understanding and comparing algorithms, offering insight into how well an algorithm scales as the input size increases.
+
+## Linear Search 
+
+  **Linear search**, also known as sequential search, is a simple searching algorithm that scans each element in a list or array sequentially until the desired element is found or the end of the list is reached. It works by comparing each element of the list with the target value until a match is found or all elements have been checked.
+
+  How It Works:
+  
+  1. Start at the first element of the list or array.
+  2. Compare the target value with the current element.
+  3. If they match, return the index of the current element.
+  4. If they do not match, move to the next element.
+  5. Repeat steps 2-4 until the target value is found or the end of the list is reached.
+  6. If the target value is not found after checking all elements, return a "not found" indicator (such as -1).
+
+  Example:
+
+  Given an array: `[5, 8, 3, 1, 9, 6]`
+
+  To search for the value `9`:
+
+  - Compare `5` (first element) with `9`: no match.
+  - Compare `8` (second element) with `9`: no match.
+  - Continue until reaching `9` (fifth element): match found at index 4.
+
+  Algorithm:
+
+  ```
+  def linear_search(arr, target):
+    for index in range(len(arr)):
+        if arr[index] == target:
+            return index  # Target found, return the index
+    return -1  # Target not found
+  ```
+
+  Time Complexity:
+
+  - Best case: O(1) - The target value is at the first position.
+  - Worst case: O(n) – The target value is at the last position or not present in the list.
+  - Average case: O(n) – On average, about half of the elements are checked.
+
+  Space/Memory Complexity:
+
+  - O(1) – No extra space or memory is required except for a few variables.
+
+  When to Use:
+
+  - Small data sets: Since the time complexity is O(n), linear search is most efficient with small lists or arrays.
+  - Unsorted data: If the data is unsorted or there's no extra information about the data structure, linear search is a good starting point.
+  - Simplicity: It's simple to implement and understand.
+
+  Advantages:
+
+  - Simple to implement.
+  - Works on any list, whether sorted or unsorted.
+  - No additional space is needed.
+  - Useful for data structures that don't have random access like Linked Lists.
+
+  Disadvantages: 
+
+  - Inefficient for large datasets because it requires checking each element individually.
+  - Slower than more advanced algorithms like binary search for sorted data.
+
+  In summary, linear search is useful for smaller datasets or when dealing with unsorted data where simplicity is a priority. However, for larger datasets or when performance is critical, more advanced search algorithms like binary search (for sorted data) are preferred.
