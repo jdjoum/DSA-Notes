@@ -12,6 +12,7 @@
   8. [Dynamic Arrays](#dynamic-arrays)
   9. [Big O Notation](#big-o-notation)
   10. [Linear Search](#linear-search)
+  11. [Binary Search](#binary-search)
   
 ## What is a Data Structure?
 
@@ -694,3 +695,69 @@
   - Slower than more advanced algorithms like binary search for sorted data.
 
   In summary, linear search is useful for smaller datasets or when dealing with unsorted data where simplicity is a priority. However, for larger datasets or when performance is critical, more advanced search algorithms like binary search (for sorted data) are preferred.
+
+## Binary Search
+
+  **Binary search** is an efficient algorithm for finding an item in a sorted list. It works by repeatedly dividing the search interval in half, comparing the middle element to the target value. If the target value is smaller, the search continues in the lower half; if larger, the search continues in the upper half. This process is repeated until the target is found or the interval is empty.
+
+  Time Complexity:
+  - Best case: O(1) (when the middle element is the target)
+  - Average case: O(log n)
+  - Worst case: O(log n)
+
+  Space Complexity:
+  - Iterative: O(1)
+  - Recursive: O(log n) (due to call stack)
+
+  Steps of Binary Search:
+  
+  1. Initialize pointers:
+  - Set two pointers, `low` and `high`, to the start and end of the list.
+  2. Find the middle:
+  - Calculate the middle index `mid = (low + high) // 2`.
+  3. Compare:
+  - If the middle element equals the target, return the index.
+  - If the target is smaller, set `high = mid - 1` and search the left half.
+  - If the target is larger, set `low = mid + 1` and search the right half.
+  4. Repeat until `low` exceeds `high` (indicating the element is not found).
+
+  Example of Binary Search:
+
+  Let’s search for the number `7` in the sorted array `[1, 3, 5, 7, 9, 11]`:
+
+  1. Initial range: `low = 0`, `high = 5`. Middle index is `2`. Middle element is `5`.
+  2. Since `7 > 5`, update `low = 3`.
+  3. New range: `low = 3`, `high = 5`. Middle index is `4`. Middle element is `9`.
+  4. Since `7 < 9`, update `high = 3`.
+  5. New range: `low = 3`, `high = 3`. Middle index is `3`. Middle element is `7`, so the target is found at index `3`.
+
+  Binary Search Variants:
+
+  1. Lower Bound: Finds the smallest index where the element is greater than or equal to the target.
+  2. Upper Bound: Finds the smallest index where the element is strictly greater than the target.
+  3. Binary Search on Answer: Used to solve optimization problems by searching over a range of possible answers rather than a list of elements.
+
+  Applications:
+  - Searching in sorted arrays or lists.
+  - Finding boundaries in optimization problems.
+  - Efficient lookups in sorted databases.
+  - Used in algorithms like exponential search and divide-and-conquer approaches.
+
+  Code Example(Iterative Approach)
+  ```
+  def binary_search(arr, target):
+    low, high = 0, len(arr) - 1
+    
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    
+    return -1  # Target not found
+  ```
+  This implementation returns the index of the target if found or -1 if the target is not in the array.
+  
