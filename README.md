@@ -13,6 +13,7 @@
   9. [Big O Notation](#big-o-notation)
   10. [Linear Search](#linear-search)
   11. [Binary Search](#binary-search)
+  12. [Interpolation Search](#interpolation-search)
   
 ## What is a Data Structure?
 
@@ -760,4 +761,71 @@
     return -1  # Target not found
   ```
   This implementation returns the index of the target if found or -1 if the target is not in the array.
+
+## Interpolation Search
+
+  **Interpolation Search** is an improved variant of binary search that works efficiently on sorted arrays. It is particularly useful when the data being searched is uniformly distributed. Unlike binary search, which always divides the search interval in half, interpolation search attempts to calculate the most likely position of the target value based on the value's relationship to the current bounds.
+
+  Key Characteristics:
+  - Efficient for Uniformly Distributed Data: Interpolation search works best when data is uniformly distributed, meaning the values increase or decrease at a steady rate.
+  - Adaptive: Instead of dividing the array into two equal halves like binary search, interpolation search tries to locate the target by estimating its position, reducing the number of probes in some cases.
+
+  Algorithmic Explanation:
+
+  The formula used to estimate the position of the target value is:
+
+  ![interpolation-search-equation](images/interpolation-search-equation.png "Interpolation Search Equation")
+
+  Where:
+  - `low` is the starting index of the search range.
+  - `high` is the ending index.
+  - `target` is the value being searched for.
+  - `array[low]` and `array[high]` are the values at the boundaries of the current search range. 
+
+  Steps:
+
+  1. Given a sorted array, calculate the estimated position (`pos`) using the formula above.
+  2. Compare the value at `array[pos]` with the `target`.
+  - If `array[pos] == target`, the target is found, and the algorithm returns the index.
+  - If `array[pos] > target`, narrow the search to the left of `pos`.
+  - If `array[pos] < target`, narrow the search to the right of `pos`.
+  3. Repeat the process until the target is found or the range is exhausted.
+
+  Time Complexity:
+  - Best Case: O(log(log n)) – For uniformly distributed data, the search quickly narrows down to the target.
+  - Worst Case: O(n) – If the data is not uniformly distributed, interpolation search may perform poorly and degrade to a linear search.
+
+  Space Complexity:
+  - O(1) – It uses only a few extra variables, making it space-efficient.
+
+  Example:
+
+  Consider a sorted array: `[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]`, and we want to search for the value `70`.
+
+  1. Set `low = 0` and `high = 9` (index range).
+  2. Calculate the estimated position using the formula:
+
+  ![interpolation-search-example](images/interpolation-search-example.png "Interpolation Search Example")
+
+  3. Compare `array[6]` (which is 70) with the target, and since they are equal, the algorithm returns the index 6.
+
+  When to Use Interpolation Search:
+
+  - Large, uniformly distributed datasets: It excels where values follow a regular distribution (e.g., temperatures, heights, or sorted ranges with regular intervals).
+  - Not for small or irregular datasets: On small arrays or arrays with values that vary unpredictably, binary search often performs better.
+
+  Pros:
+  
+  - Faster than binary search in ideal conditions: For uniformly distributed arrays, interpolation search can find values in fewer iterations.
+  - Efficient for large datasets: As dataset size grows, the efficiency of interpolation search becomes more apparent, especially when compared to binary search.
+
+  Cons:
+
+  - Not reliable for non-uniform distributions: In the worst case, the search degenerates to a linear search.
+  - Overhead of calculations: The extra computations involved in estimating the position can be more costly than a simple binary search when the dataset is small.
+
+  Conclusion
+
+  Interpolation search is a powerful algorithm for searching in large, uniformly distributed sorted datasets, where it can outperform binary search. However, for datasets that are small or not uniformly distributed, binary search remains the better option due to its consistent O(log n) performance.
+
   
