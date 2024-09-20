@@ -14,6 +14,7 @@
   10. [Linear Search](#linear-search)
   11. [Binary Search](#binary-search)
   12. [Interpolation Search](#interpolation-search)
+  13. [Bubble Sort](#bubble-sort)
   
 ## What is a Data Structure?
 
@@ -828,4 +829,70 @@
 
   Interpolation search is a powerful algorithm for searching in large, uniformly distributed sorted datasets, where it can outperform binary search. However, for datasets that are small or not uniformly distributed, binary search remains the better option due to its consistent O(log n) performance.
 
+## Bubble Sort
+
+  **Bubble Sort** is a simple comparison-based sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. This process is repeated until the list is sorted.
+
+  <ins>How It Works</ins>
+
+  The algorithm passes through the list multiple times. During each pass:
+  1. It compares each pair of adjacent elements.
+  2. If the current element is greater than the next element, it swaps them.
+  3. This "bubbles" the largest unsorted element to the correct position at the end of the list.
+
+  The process repeats, ignoring the last sorted element with each pass, until no swaps are needed (i.e., the list is sorted).
+
+  Example:
+
+  Given an array `[5, 3, 8, 4, 2]`, here’s how Bubble Sort would sort it:
+
+  1. Pass 1:
+
+  - Compare 5 and 3, swap → `[3, 5, 8, 4, 2]`
+  - Compare 5 and 8, no swap → `[3, 5, 8, 4, 2]`
+  - Compare 8 and 4, swap → `[3, 5, 4, 8, 2]`
+  - Compare 8 and 2, swap → `[3, 5, 4, 2, 8]`
   
+  2. Pass 2:
+
+  - Compare 3 and 5, no swap → `[3, 5, 4, 2, 8]`
+  - Compare 5 and 4, swap → `[3, 4, 5, 2, 8]`
+  - Compare 5 and 2, swap → `[3, 4, 2, 5, 8]`
+  
+  3. Pass 3:
+
+  - Compare 3 and 4, no swap → `[3, 4, 2, 5, 8]`
+  - Compare 4 and 2, swap → `[3, 2, 4, 5, 8]`
+  
+  4. Pass 4:
+
+  - Compare 3 and 2, swap → `[2, 3, 4, 5, 8]`
+
+  Now the list is sorted.
+
+  Time Complexity:
+
+  - Best case: O(n) – when the list is already sorted.
+  - Average case: O(n²) – requires n passes, each involving n-1 comparisons.
+  - Worst case: O(n²) – occurs when the list is in reverse order.
+
+  Space Complexity:
+  
+  - Space: O(1) – as it is an in-place sorting algorithm
+
+  Key Characteristics:
+
+  - In-place: Bubble Sort sorts the list without needing extra space.
+  - Stable: Equal elements retain their relative order.
+  - Simple to implement: Its logic is easy to understand.
+  - Generally, heavy elements (higher values) are sorted towards the end of the list, while light elements are sorted towards the beginning of the list.
+
+  Optimizations:
+
+  1. Early Exit: If no swaps are made during a pass, the list is already sorted, so the algorithm can terminate early.
+  2. Skip Sorted Elements: After each pass, the largest element is guaranteed to be in its final position, so it can be ignored in subsequent passes.
+
+  Use Cases:
+
+  - Bubble Sort is primarily used for educational purposes and small datasets due to its inefficiency compared to more advanced algorithms (e.g., QuickSort, MergeSort). It is often chosen when simplicity outweighs performance concerns.
+
