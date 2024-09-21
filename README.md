@@ -15,6 +15,7 @@
   11. [Binary Search](#binary-search)
   12. [Interpolation Search](#interpolation-search)
   13. [Bubble Sort](#bubble-sort)
+  14. [Selection Sort](#selection-sort)
   
 ## What is a Data Structure?
 
@@ -606,6 +607,8 @@
   | O(2^n) | Exponential Time | Performance doubles with each addition to the input size (e.g., recursive algorithms). |
   | O(n!) | Factorial Time | Performance increases factorially, often seen in brute force solutions for permutation problems. |
 
+  ![big-o-complexity-chart](images/big-o-complexity-chart.png "Big-O Complexity Chart")
+
   4. How to Analyze Big O
 
   - Key factors to consider:
@@ -896,3 +899,55 @@
 
   - Bubble Sort is primarily used for educational purposes and small datasets due to its inefficiency compared to more advanced algorithms (e.g., QuickSort, MergeSort). It is often chosen when simplicity outweighs performance concerns.
 
+## Selection Sort
+
+  **Selection Sort** is a simple comparison-based sorting algorithm. It works by repeatedly finding the minimum element from the unsorted part of the array and moving it to the beginning. It's easy to understand but not very efficient for large datasets compared to more advanced algorithms like QuickSort or MergeSort.
+
+  How It Works:
+
+  1. Initial Unsorted Array: Consider an array of unsorted elements.
+  2. Iterate Over the Array: Start at the first element and look for the smallest element in the array.
+  3. Swap the Minimum Element: Once the smallest element is found, swap it with the first element of the array (or the first unsorted element).
+  4. Move to the Next Element: Then, move to the second element and repeat the process—find the smallest element in the remaining unsorted part of the array and swap it with the second element.
+  5. Repeat Until Sorted: Continue this process until the entire array is sorted.
+
+  Steps for Sorting an Array:
+
+  For an array: `[64, 25, 12, 22, 11]`
+
+  1. Step 1: Find the smallest element from index 0 to 4. The smallest is 11. Swap it with the element at index 0.
+  Result: `[11, 25, 12, 22, 64]`
+  2. Step 2: Now look at the remaining part from index 1 to 4. The smallest is 12. Swap it with the element at index 1.
+  Result: `[11, 12, 25, 22, 64]`
+  3. Step 3: From index 2 to 4, the smallest is 22. Swap it with the element at index 2.
+  Result: `[11, 12, 22, 25, 64]`
+  4. Step 4: Now from index 3 to 4, the smallest is 25, which is already in place.
+  Result: `[11, 12, 22, 25, 64]`
+
+  The array is now sorted.
+
+  Time Complexity:
+
+  - Best Case: O(n²)
+  - Worst Case: O(n²)
+  - Average Case: O(n²)
+
+  This quadratic time complexity makes Selection Sort inefficient for large datasets, especially compared to more advanced algorithms like QuickSort (O(n log n)).
+
+  Space Complexity:
+
+  - Space Complexity: O(1) (in-place sorting, no extra space needed)
+  - Selection Sort is an in-place algorithm, meaning it doesn’t require additional storage, making it space-efficient.
+
+  Key Characteristics:
+
+  - Stability: Not stable. Selection Sort doesn't preserve the relative order of elements with equal values unless specifically modified to do so.
+  - In-Place: It sorts the array in place, requiring no additional memory beyond a constant amount.
+  - Simplicity: It's easy to understand and implement, making it suitable for small datasets or when simplicity is valued over performance.
+
+  When to Use Selection Sort:
+
+  - Small Datasets: It's a good choice for small arrays where the performance impact of O(n²) time complexity is negligible.
+  - Memory Constraints: Since it operates in-place, Selection Sort can be useful in memory-constrained environments.
+
+  However, for larger datasets or performance-critical applications, more efficient algorithms such as Merge Sort, Quick Sort, or Heap Sort are preferred.
