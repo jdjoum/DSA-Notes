@@ -16,6 +16,7 @@
   12. [Interpolation Search](#interpolation-search)
   13. [Bubble Sort](#bubble-sort)
   14. [Selection Sort](#selection-sort)
+  15. [Insertion Sort](#insertion-sort)
   
 ## What is a Data Structure?
 
@@ -951,3 +952,72 @@
   - Memory Constraints: Since it operates in-place, Selection Sort can be useful in memory-constrained environments.
 
   However, for larger datasets or performance-critical applications, more efficient algorithms such as Merge Sort, Quick Sort, or Heap Sort are preferred.
+
+## Insertion Sort
+
+  **Insertion Sort** is a simple, comparison-based sorting algorithm that builds the final sorted array (or list) one item at a time. It's similar to sorting playing cards in your hands—pick up a card and insert it into its correct position relative to the already sorted cards.
+
+  Steps:
+
+  1. Start with the second element (index 1) and compare it to the first element (index 0).
+  2. If the second element is smaller, move the first element one position to the right and insert the second element at the beginning.
+  3. Continue this process for each subsequent element, inserting each element into its correct position in the sorted portion of the array.
+
+  Algorithm:
+
+  For an array arr of n elements:
+
+  1. Outer Loop: Iterate through arr starting at index 1.
+  2. Inner Loop: For each element arr[i], compare it with elements to its left (i.e., arr[0] to arr[i-1]). Shift elements that are larger than arr[i] one position to the right to make space.
+  3. Insert arr[i] into its correct position.
+
+  Pseudocode:
+
+  ```
+  for i from 1 to n-1:
+    key = arr[i]
+    j = i - 1
+    
+    # Move elements of arr[0..i-1], that are greater than key, to one position ahead of their current position
+    while j >= 0 and arr[j] > key:
+        arr[j + 1] = arr[j]
+        j = j - 1
+        
+    arr[j + 1] = key
+  ```
+
+  Example:
+
+  Let’s sort the array `[12, 11, 13, 5, 6]` using Insertion Sort.
+
+  1. First Pass (`i = 1`): Compare `11` with `12` and swap. Now the array is `[11, 12, 13, 5, 6]`.
+  2. Second Pass (`i = 2`): Compare `13` with `12`. No swap is needed.
+  3. Third Pass (`i = 3`): Compare `5` with `13`, `12`, and `11`, and move all three elements to the right. Insert `5` at the beginning. Now the array is `[5, 11, 12, 13, 6]`.
+  4. Fourth Pass (`i = 4`): Compare `6` with `13`, `12`, and `11`, and move them to the right. Insert `6` in the correct position. The sorted array is `[5, 6, 11, 12, 13]`.
+
+  Time Complexity:
+
+  - Best case: `O(n)` when the array is already sorted.
+  - Average and worst case: `O(n^2)` due to nested loops in the algorithm. In the worst case (when the array is sorted in reverse order), every new element has to be compared with all previously sorted elements.
+
+  Space Complexity:
+
+  - O(1) because it sorts the array in-place.
+
+  Advantages:
+
+  - Simple to implement.
+  - Efficient for small datasets or nearly sorted arrays.
+  - Stable: It preserves the relative order of equal elements.
+
+  Disadvantages:
+
+  - Inefficient for large datasets due to its quadratic time complexity.
+  - Not well-suited for random, large lists compared to more advanced algorithms like QuickSort or MergeSort.
+
+  When to Use:
+
+  - When the array is nearly sorted.
+  - When working with small datasets.
+  - When stability (preserving the order of equal elements) is required.
+  
