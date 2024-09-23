@@ -17,6 +17,7 @@
   13. [Bubble Sort](#bubble-sort)
   14. [Selection Sort](#selection-sort)
   15. [Insertion Sort](#insertion-sort)
+  16. [Recursion](#recursion)
   
 ## What is a Data Structure?
 
@@ -1020,4 +1021,137 @@
   - When the array is nearly sorted.
   - When working with small datasets.
   - When stability (preserving the order of equal elements) is required.
-  
+
+## Recursion
+
+  **Recursion** is a programming technique where a function calls itself in order to solve a problem. It breaks a problem down into smaller instances of the same problem until it reaches a base case, at which point it stops calling itself and begins returning values.
+
+  Key Components of Recursion:
+
+  1. Base Case: The simplest, smallest instance of the problem that can be solved directly. Every recursive function must have a base case to prevent infinite recursion.
+  2. Recursive Case: The part where the function calls itself with modified arguments that bring it closer to the base case.
+
+  How Recursion Works:
+
+  Recursion works by "dividing and conquering" the problem. For example, if you want to calculate the factorial of a number n (i.e., n!) you can express it as n! = n * (n-1)!
+
+  This shows that the factorial of n depends on the factorial of n-1, which means the function calls itself for n-1. This process continue until the base case where n=1, is reached.
+
+  Example of calculating factorial:
+
+  ```
+  def factorial(n):
+    # Base case
+    if n == 1:
+        return 1
+    # Recursive case
+    return n * factorial(n - 1)
+  ```
+
+  When `factorial(5)` is called, it will follow this sequence:
+  - `factorial(5)` → `5 * factorial(4)`
+  - `factorial(4)` → `4 * factorial(3)`
+  - `factorial(3)` → `3 * factorial(2)`
+  - `factorial(2)` → `2 * factorial(1)`
+  - `factorial(1)` returns `1`
+
+  The calls then resolve, and the final result is computed.
+
+  Types of Recursion:
+
+  1. Direct Recursion: A function calls itself directly.
+  ```
+  def recurse():
+    return recurse()
+  ```
+
+  2. Indirect Recursion: A function calls another function that in turn calls the first function.
+  ```
+  def funcA():
+    return funcB()
+
+  def funcB():
+      return funcA()
+  ```
+
+  3. Tail Recursion: A special case where the recursive call is the last operation in the function. This allows for optimization in some languages (called "tail call optimization"), where the system doesn't need to add a new stack frame for each recursive call.
+  ```
+  def tail_factorial(n, accumulator=1):
+    if n == 1:
+        return accumulator
+    return tail_factorial(n - 1, accumulator * n)
+  ```
+
+  Applications of Recursion:
+
+  1. Mathematical Problems:
+  - Factorials, Fibonacci sequence
+  - Exponentiation
+  - GCD (Greatest Common Divisor) using Euclid’s Algorithm
+
+  2. Tree Traversals: Recursion is commonly used in data structures like binary trees for in-order, pre-order, and post-order traversals.
+  ```
+  def inorder_traversal(node):
+    if node:
+        inorder_traversal(node.left)
+        print(node.value)
+        inorder_traversal(node.right)
+  ```
+
+  3. Divide and Conquer Algorithms: Many algorithms such as QuickSort, MergeSort, and Binary Search are implemented using recursion.
+  - MergeSort: Divide the array into halves and recursively sort them.
+  ```
+  def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left_half = arr[:mid]
+        right_half = arr[mid:]
+        merge_sort(left_half)
+        merge_sort(right_half)
+        merge(arr, left_half, right_half)
+  ```
+
+  4. Backtracking: Problems like generating combinations, solving mazes, or finding paths (e.g., generating valid parentheses, solving Sudoku) often use recursion.
+  ```
+  def generate_parentheses(n, current='', open=0, close=0):
+    if len(current) == 2 * n:
+        print(current)
+        return
+    if open < n:
+        generate_parentheses(n, current + '(', open + 1, close)
+    if close < open:
+        generate_parentheses(n, current + ')', open, close + 1)
+  ```
+
+  Advantages of Recursion:
+  - Elegance: Solutions can be concise and closer to the mathematical definition of a problem.
+  - Simplicity: For complex problems, recursion simplifies the logic by breaking it down into smaller subproblems.
+
+  Disadvantages of Recursion:
+  - Performance: Recursive functions can be memory-intensive due to stack usage. For deep recursions, the system can run out of memory (stack overflow).
+  - Overhead: Each recursive call requires additional overhead from function calls (setting up stack frames).
+
+  Optimizations:
+  1. Memoization: Storing previously computed results to avoid redundant calculations. This is used in dynamic programming problems to optimize recursion.
+  ```
+  memo = {}
+  def fib(n):
+      if n in memo:
+          return memo[n]
+      if n <= 1:
+          return n
+      memo[n] = fib(n - 1) + fib(n - 2)
+      return memo[n]
+  ```
+
+  2. Tail Call Optimization: Some languages (e.g., Scheme, Haskell) support this feature, which reuses the current function's stack frame for tail-recursive calls, avoiding stack overflow.
+
+  When to Use Recursion:
+  - Problem Size is Unknown or Large: For problems like traversing trees or searching within structures where the size isn’t fixed.
+  - Elegant Mathematical Relations: Problems like factorial, Fibonacci, and combinatorial problems are naturally expressed with recursion.
+  - Divide and Conquer Approach: When the problem can be broken down into smaller subproblems, such as sorting algorithms.
+
+  Conclusion:
+
+  Recursion is a powerful concept that can make certain problems easier to solve, especially when they naturally fit into recursive patterns. However, it’s important to be mindful of the trade-offs regarding performance and memory use. Understanding both when and how to use recursion effectively is key to mastering this concept.
+
