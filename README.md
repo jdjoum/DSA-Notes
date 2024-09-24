@@ -18,6 +18,7 @@
   14. [Selection Sort](#selection-sort)
   15. [Insertion Sort](#insertion-sort)
   16. [Recursion](#recursion)
+  17. [Merge Sort](#merge-sort)
   
 ## What is a Data Structure?
 
@@ -1154,4 +1155,113 @@
   Conclusion:
 
   Recursion is a powerful concept that can make certain problems easier to solve, especially when they naturally fit into recursive patterns. However, it’s important to be mindful of the trade-offs regarding performance and memory use. Understanding both when and how to use recursion effectively is key to mastering this concept.
+
+## Merge Sort
+
+  **Merge Sort** is a classic divide-and-conquer algorithm used for sorting an array or list of elements. It is efficient, stable, and works on the principle of dividing the problem into smaller subproblems, solving them independently, and then combining the solutions to solve the original problem.
+
+  Key Characteristics:
+
+  - Time Complexity: O(n log n)
+  - Space Complexity: O(n) due to the additional arrays needed for merging
+  - Algorithm Type: Divide and conquer
+  - Stable: Yes (preserves the relative order of elements with equal keys)
+  - In-place: No (requires additional space proportional to the input size)
+
+  How Merge Sort Works:
+
+  Merge Sort works by repeatedly splitting the array into halves until each subarray contains only one element. Then, it merges those subarrays back together in a sorted manner.
+
+  Steps:
+
+  1. Divide: Split the array into two halves.
+  2. Recursion: Recursively sort each half.
+  3. Merge: Merge the two halves back into a sorted array.
+
+  Example Walkthrough:
+
+  Let’s consider an example of sorting the array `[38, 27, 43, 3, 9, 82, 10]`.
+
+  1. Divide: Split the array until each subarray has only one element.
+  - `[38, 27, 43, 3, 9, 82, 10]` → Left: `[38, 27, 43]`, Right: `[3, 9, 82, 10]`
+  - `[38, 27, 43]` → Left: `[38]`, Right: `[27, 43]`
+  - `[27, 43]` → Left: `[27]`, Right: `[43]`
+  - `[3, 9, 82, 10]` → Left: `[3, 9]`, Right: `[82, 10]`
+  - `[3, 9]` → Left: `[3]`, Right: `[9]`
+  - `[82, 10]` → Left: `[82]`, Right: `[10]`
+
+  2. Recursion: Recursively sort each half. Since arrays with one element are already sorted, we begin merging.
+
+  3. Merge:
+  - Merge `[27]` and `[43]` → `[27, 43]`
+  - Merge `[38]` and `[27, 43]` → `[27, 38, 43]`
+  - Merge `[3]` and `[9]` → `[3, 9]`
+  - Merge `[82]` and `[10]` → `[10, 82]`
+  - Merge `[3, 9]` and `[10, 82]` → `[3, 9, 10, 82]`
+  - Finally, merge `[27, 38, 43]` and `[3, 9, 10, 82]` → `[3, 9, 10, 27, 38, 43, 82]`
+
+  Visualization:
+
+  ![merge-sort-visualization](images/merge-sort-visualization.png "Merge Sort Visualization")
+
+  Merge Sort Pseudocode:
+
+  ```
+  def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    # Step 1: Divide the array in half
+    mid = len(arr) // 2
+    left_half = arr[:mid]
+    right_half = arr[mid:]
+
+    # Step 2: Recursively sort each half
+    left_sorted = merge_sort(left_half)
+    right_sorted = merge_sort(right_half)
+
+    # Step 3: Merge the two halves
+    return merge(left_sorted, right_sorted)
+
+  def merge(left, right):
+      sorted_array = []
+      i = j = 0
+
+      # Merge until one of the lists is exhausted
+      while i < len(left) and j < len(right):
+          if left[i] < right[j]:
+              sorted_array.append(left[i])
+              i += 1
+          else:
+              sorted_array.append(right[j])
+              j += 1
+
+      # Add remaining elements from both halves
+      sorted_array.extend(left[i:])
+      sorted_array.extend(right[j:])
+      
+      return sorted_array
+  ```
+
+  Time Complexity Analysis:
+  
+  - Divide Step: The array is divided into two halves at each recursion level. This gives a logarithmic depth (log n) to the recursion tree.
+  - Merge Step: At each level, merging the two halves requires traversing all n elements, resulting in O(n) work per level.
+  - Overall Complexity: O(n log n)
+
+  Advantages:
+
+  - Guaranteed O(n log n) Performance: Unlike algorithms like Quick Sort, Merge Sort always runs in O(n log n) time, regardless of the input.
+  - Stability: It preserves the relative order of elements with equal values.
+  - Can Handle Large Data Sets: It works well with large datasets that don’t fit into memory when implemented in an external sorting variant.
+
+  Disadvantages:
+
+  - Space Complexity: Merge Sort requires additional space for merging, which can be inefficient for systems with limited memory.
+  - Not In-Place: The extra arrays used for merging make it less efficient in terms of space compared to in-place sorts like Quick Sort or Heap Sort.
+  
+  Applications:
+
+  - Sorting linked lists (where space complexity isn’t a concern)
+  - Sorting large datasets that require guaranteed performance
 
