@@ -19,6 +19,7 @@
   15. [Insertion Sort](#insertion-sort)
   16. [Recursion](#recursion)
   17. [Merge Sort](#merge-sort)
+  18. [Quick Sort](#quick-sort)
   
 ## What is a Data Structure?
 
@@ -1264,4 +1265,72 @@
 
   - Sorting linked lists (where space complexity isn’t a concern)
   - Sorting large datasets that require guaranteed performance
+
+## Quick Sort
+
+  **Quick Sort** is a highly efficient and widely used sorting algorithm that uses a divide-and-conquer approach to sort elements. It was developed by Tony Hoare in 1959 and remains one of the most popular sorting algorithms due to its average-case performance and in-place sorting capabilities.
+
+  How Quick Sort Works:
+
+  Quick Sort works by selecting a "pivot" element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot. The process is then recursively applied to the sub-arrays.
+
+  Steps:
+
+  1. Choose a Pivot: Select an element from the array to act as the pivot. The choice of pivot can vary (first element, last element, random element, or median), but it greatly affects performance.
+  2. Partitioning: Rearrange the array so that all elements less than the pivot are on the left side, and all elements greater than the pivot are on the right side. The pivot is then placed in its final position in the sorted array.
+  3. Recursive Sorting: Recursively apply the above steps to the sub-arrays of elements with smaller and greater values.
+  4. Base Case: The recursion ends when the sub-arrays have zero or one element, as they are already sorted.
+
+  Example:
+
+  Given an array: `[3, 6, 8, 10, 1, 2, 1]`
+
+  1. Choose a pivot (e.g., `8`).
+  2. Partition the array: `[3, 6, 1, 2, 1, 8, 10]`.
+  3. Recursively apply Quick Sort to the left `[3, 6, 1, 2, 1]` and right `[10]` sub-arrays.
+  4. Continue until all elements are sorted: `[1, 1, 2, 3, 6, 8, 10]`.
+
+  Visualization:
+
+  ![quick-sort-visualization](images/quick-sort-visualization.png "Quick Sort Visualization")
+
+  Key Concepts:
+
+  1. Pivot Selection: The choice of pivot affects the efficiency. Common strategies include:
+  - First or last element.
+  - Random element.
+  - Median-of-three (median of first, middle, and last elements).
+  2. Partitioning: Rearranges the array based on the pivot. Lomuto and Hoare partition schemes are popular methods:
+  - Lomuto Partition Scheme: Uses the last element as the pivot and two indices to place smaller elements on the left and larger on the right.
+  - Hoare Partition Scheme: Uses two pointers that start at the ends of the array and move towards each other, swapping elements when necessary.
+  3. Recursion and Base Case: Recursively sorts the sub-arrays until they contain fewer than two elements.
+
+  Time Complexity:
+
+  - Best Case: `O(n log n)` — Occurs when the pivot consistently splits the array into two equal halves.
+  - Average Case: `O(n log n)` — Expected performance in most practical scenarios.
+  - Worst Case: `O(n^2)` — Occurs when the pivot is consistently the smallest or largest element, leading to unbalanced partitions (e.g., sorted or reverse-sorted arrays).
+
+  Space Complexity:
+
+  - In-Place Sorting: Uses O(log n) additional space for recursive calls, making it space-efficient compared to other divide-and-conquer algorithms like Merge Sort.
+
+  Advantages:
+  - Efficient with average time complexity of `O(n log n)`.
+  - Performs well on large datasets.
+  - In-place sorting with minimal memory usage.
+
+  Disadvantages:
+  - Worst-case time complexity of  `O(n^2)` if poorly implemented (e.g., bad pivot choice).
+  - Not a stable sort (relative order of equal elements is not maintained).
+
+  Applications:
+  - Widely used in various libraries and applications where performance is critical.
+  - Ideal for systems where in-place sorting with minimal extra space is needed.
+  - Used in languages like C++’s Standard Template Library (STL) and Python's built-in sort (though Python uses Timsort, a hybrid of Merge Sort and Insertion Sort for stability).
+
+  Conclusion:
+
+  Quick Sort is a powerful sorting algorithm known for its speed and efficiency. By carefully choosing pivots and optimizing partition schemes, it performs well in practice and serves as a fundamental algorithm in computer science.
+
 
