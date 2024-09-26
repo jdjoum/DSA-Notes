@@ -20,6 +20,7 @@
   16. [Recursion](#recursion)
   17. [Merge Sort](#merge-sort)
   18. [Quick Sort](#quick-sort)
+  19. [Hash Tables](#hash-tables)
   
 ## What is a Data Structure?
 
@@ -1333,4 +1334,96 @@
 
   Quick Sort is a powerful sorting algorithm known for its speed and efficiency. By carefully choosing pivots and optimizing partition schemes, it performs well in practice and serves as a fundamental algorithm in computer science.
 
+## Hash Tables
+
+  A **hash table** (or hash map) is a data structure that stores key-value pairs. It allows efficient data retrieval, insertion, and deletion by using a hash function to compute an index (or hash code) into an array of buckets, from which the desired value can be found.
+
+  Key Concepts:
+  
+  - Key-Value Pair: Each element in a hash table is stored as a pair, consisting of a key and a value.
+  - Hash Function: A function that takes an input (key) and returns a numerical index (hash code), which determines where the data is stored.
+  - Buckets: These are array slots where elements are stored. Multiple keys can hash to the same bucket, which leads to collisions.
+
+  Operations:
+
+  - Insert: A new key-value pair is added to the table.
+    - Time complexity: Average O(1), Worst-case O(n) (in case of collisions).
+  - Search: Retrieves the value associated with a given key.
+    - Time complexity: Average O(1), Worst-case O(n).
+  - Delete: Removes the key-value pair associated with a given key.
+    - Time complexity: Average O(1), Worst-case O(n).
+
+  Collision Resolution Strategies:
+
+  Collisions occur when two keys produce the same hash code. There are multiple methods for resolving these collisions:
+  
+  - Chaining: Each bucket points to a linked list or another data structure that holds all elements hashing to the same index.
+    - Pros: Handles collisions well, simple to implement.
+    - Cons: Linked lists can degrade performance to O(n) in the worst case.
+  - Open Addressing: If a collision occurs, it searches for another open slot in the table using one of the following methods:
+    - Linear Probing: Incrementally search for the next available slot.
+    - Quadratic Probing: Use a quadratic function to find the next available slot.
+    - Double Hashing: Apply a second hash function to determine the next available slot.
+
+  Load Factor:
+
+  The **load factor** is defined as the ratio of the number of elements in the hash table to the size of the table (i.e., the number of buckets).
+
+  - Load Factor Formula:
+
+    ![load-factor-formula](images/load-factor-formula.png "Load Factor Formula")
+
+  - A high load factor increases the probability of collisions, leading to degraded performance. A common practice is to resize the table when the load factor exceeds a certain threshold (usually 0.75).
+
+  Hash Function Properties:
+
+  - A good hash function should:
+    - Distribute keys uniformly across the table to minimize collisions.
+    - Be fast to compute.
+    - Handle various data types (numbers, strings, etc.).
+
+  Advantages:
+
+  - Efficient Data Access: On average, both insert and lookup operations are O(1).
+  - Dynamic: Can dynamically resize when needed to maintain efficiency.
+
+  Disadvantages:
+
+  - Collisions: Inefficient collision resolution can degrade performance.
+  - Memory Overhead: Hash tables often require extra space (especially with open addressing methods).
+
+  Applications:
+
+  - Databases: Indexing for fast data retrieval.
+  - Caching: Hash tables can store cache data for fast lookups.
+  - Symbol Tables: Used in compilers/interpreters for managing variable names.
+  - Sets and Maps: Underpin data structures like dictionaries in Python or Maps in JavaScript.
+
+  Common Hash Table Implementations:
+
+  - Python’s `dict`: Implements a hash table with chaining.
+  - Java’s `HashMap`: Uses open addressing and dynamic resizing.
+
+  Time Complexities:
+
+  - Average Case:
+    - Insert: O(1)
+    - Search: O(1)
+    - Delete: O(1)
+  - Worst Case (with poor hash function or high load factor):
+    - Insert: O(n)
+    - Search: O(n)
+    - Delete: O(n)
+
+  Example:
+
+  Let’s say we want to store a phone book using a hash table. A name (key) is hashed to an index where the corresponding phone number (value) is stored. When a user searches for a name, the hash function computes the index and retrieves the number efficiently.
+
+  Visualization:
+
+  ![hash-table-visualization](images/hash-table-visualization.png "Hash Table Visualization")
+
+  Conclusion:
+
+  Hash tables are widely used due to their efficient average-case performance for operations like insertion, search, and deletion. However, understanding and managing collisions, choosing an appropriate hash function, and resizing strategies are critical to ensuring optimal performance.
 
