@@ -21,6 +21,7 @@
   17. [Merge Sort](#merge-sort)
   18. [Quick Sort](#quick-sort)
   19. [Hash Tables](#hash-tables)
+  20. [Graphs](#graphs)
   
 ## What is a Data Structure?
 
@@ -1426,4 +1427,57 @@
   Conclusion:
 
   Hash tables are widely used due to their efficient average-case performance for operations like insertion, search, and deletion. However, understanding and managing collisions, choosing an appropriate hash function, and resizing strategies are critical to ensuring optimal performance.
+
+## Graphs
+
+  **Graphs** are powerful data structures that model relationships between objects. A graph is composed of a set of nodes (also called vertices) connected by edges. Graphs are widely used to solve complex problems in areas like networking, social media, transportation, and more.
+
+  Components of a Graph:
+
+  1. Vertex (Node): Represents an object or entity.
+  2. Edge: Represents a connection or relationship between two vertices.
+
+  Types of Graphs:
+
+  1. Directed Graph (Digraph): The edges have direction, meaning an edge from vertex A to vertex B doesn't imply an edge from B to A.
+  - Example: Twitter's "follow" feature.
+  2. Undirected Graph: Edges have no direction, meaning if there's an edge between A and B, you can traverse from A to B and vice versa.
+  - Example: Facebook friends.
+  3. Weighted Graph: Each edge has a weight (or cost) associated with it.
+  - Example: Road networks where weights represent distances.
+  4. Unweighted Graph: All edges have equal importance or cost.
+  5. Cyclic Graph: Contains at least one cycle, meaning you can start at a vertex and follow a path that leads back to the starting vertex.
+  6. Acyclic Graph: Contains no cycles. A special case is the Directed Acyclic Graph (DAG), often used in scheduling, task dependency graphs, and version control.
+
+  Representations of Graphs:
+  1. Adjacency Matrix: A 2D array where rows and columns represent vertices, and matrix cells indicate whether an edge exists between them.
+  - Memory complexity: O(V²) where V is the number of vertices.
+  2. Adjacency List: An array of lists, where each list contains the neighboring vertices for a given vertex.
+  - Memory complexity: O(V + E) where E is the number of edges.
+  3. Edge List: A list of edges that connects two vertices.
+  - Memory complexity: O(E).
+
+  Visualizations:
+
+  ![undirected-graph-visualization](images/undirected-graph-visualization.png "Undirected Graph Visualization")
+
+  ![adjacency-matrix-visualization](images/adjacency-matrix-visualization.png "Adjacency Matrix Visualization")
+
+  ![adjacency-list-visualization](images/adjacency-list-visualization.png "Adjacency List Visualization")
+
+  Graph Traversal Algorithms:
+  1. Breadth-First Search (BFS): Explores all neighbors at the current depth before moving deeper. It is often used to find the shortest path in unweighted graphs.
+  - Time complexity: O(V + E).
+  2. Depth-First Search (DFS): Explores as far as possible along each branch before backtracking. It is used for cycle detection, topological sorting, and pathfinding.
+  - Time complexity: O(V + E).
+
+  Applications of Graphs:
+
+  - Social Networks: Users are nodes, and friendships/followers are edges.
+  - Navigation Systems: Locations are nodes, and roads are weighted edges.
+  - Computer Networks: Routers/switches are nodes, and communication links are edges.
+  - Dependency Graphs: In software, tasks are vertices, and dependencies between tasks are edges.
+  - Recommendation Systems: Items and users are vertices, and interactions between them are edges.
+
+  Graphs are versatile and essential structures, with many real-world applications and deep connections to algorithm design.
 
