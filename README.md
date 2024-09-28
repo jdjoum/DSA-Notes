@@ -22,6 +22,7 @@
   18. [Quick Sort](#quick-sort)
   19. [Hash Tables](#hash-tables)
   20. [Graphs](#graphs)
+  21. [Depth First Search](#depth-first-search)
   
 ## What is a Data Structure?
 
@@ -1480,4 +1481,122 @@
   - Recommendation Systems: Items and users are vertices, and interactions between them are edges.
 
   Graphs are versatile and essential structures, with many real-world applications and deep connections to algorithm design.
+
+## Depth First Search
+
+  **Depth First Search (DFS)** is a fundamental graph traversal algorithm used in computer science to explore nodes and edges of a graph systematically. DFS is often compared to Breadth First Search (BFS), but it explores as far as possible along a branch before backtracking, which gives it its characteristic "depth-first" nature.
+
+  Key Concepts:
+
+  1. Graph Representation:
+
+  - A graph can be represented using:
+    - Adjacency Matrix: A 2D array where matrix[i][j] = 1 indicates an edge between nodes i and j.
+    - Adjacency List: Each node points to a list of all its adjacent nodes.
+
+  2. Types of Graphs:
+
+  - DFS can be used on:
+    - Directed and Undirected Graphs
+    - Cyclic and Acyclic Graphs
+    - Weighted and Unweighted Graphs
+
+  3. DFS Stack and Recursion:
+
+  - DFS can be implemented both recursively and iteratively:
+    - In recursive DFS, the call stack of the system simulates a stack.
+    - In iterative DFS, an explicit stack data structure is used to keep track of nodes.
+
+  Algorithm Steps:
+
+  1. Start from a node (usually called the source).
+  2. Visit the node and mark it as visited.
+  3. Explore its neighbors (adjacent nodes) one by one.
+  4. For each unvisited neighbor, recursively apply DFS to it (or push it onto a stack if iterative).
+  5. Backtrack when no more unvisited neighbors exist, and continue from the last node in the stack.
+
+  Example of DFS:
+
+  - Consider a simple graph:
+  ```
+  A -- B
+  |    |
+  C -- D
+  ```
+
+  - Starting DFS from node `A`:
+  1. Visit `A`.
+  2. Visit `B` from `A`.
+  3. Visit `D` from `B`.
+  4. Visit `C` from `D`.
+  5. Backtrack when no more unvisited neighbors exist.
+
+  Order of Traversal: `A` → `B` → `D` → `C`
+
+  Visualization:
+
+  ![dfs-visualization](images/dfs-visualization.jpg "DFS Visualization")
+
+  Application of DFS:
+
+  1. Pathfinding and Maze Solving:
+  DFS can be used to find a path between two nodes, especially when you want to explore one path as deep as possible before considering others.
+
+  2. Cycle Detection:
+  DFS can be used to detect cycles in a graph by tracking visited nodes and checking for back edges.
+
+  3. Topological Sorting:
+  For Directed Acyclic Graphs (DAGs), DFS helps in finding a valid ordering of tasks that respects dependencies (used in build systems, scheduling, etc.).
+
+  4. Connected Components:
+  DFS can identify all connected components in an undirected graph by starting a new DFS whenever an unvisited node is encountered.
+
+  5. Solving Puzzles and Games:
+  DFS can solve problems that require exploring decision trees, such as in chess, Sudoku, and other combinatorial puzzles.
+
+  Complexity of DFS:
+
+  - Time Complexity:
+  In both adjacency matrix and adjacency list representations, DFS has a time complexity of O(V + E), where V is the number of vertices and E is the number of edges.
+
+  - Space Complexity:
+  DFS has a space complexity of O(V) due to the stack used (either explicit or implicit via recursion) and the visited array.
+
+  DFS vs. BFS:
+
+  | Aspect | DFS | BFS |
+  |-------|------|----|
+  | Exploration	| Deepest nodes first |	Nearest nodes first |
+  | Data Structure | Stack (recursive or explicit) | Queue | 
+  | Use Case |	Suitable for exploring deep paths, such as puzzle solving, detecting cycles |	Suitable for shortest path in unweighted graphs (e.g., social networks) |
+  | Space Usage |	O(V) (for recursion or stack)	| O(V) (for queue) |
+  | Backtracking | Yes	| No |
+
+  DFS Pseudocode (Recursive):
+  ```
+  def dfs(node, visited):
+    visited.add(node)  # Mark the current node as visited
+    for neighbor in graph[node]:  # Explore all adjacent nodes
+        if neighbor not in visited:
+            dfs(neighbor, visited)  # Recursively explore unvisited neighbors
+  ```
+
+  DFS Pseudocode (Iterative):
+  ```
+  def dfs_iterative(start):
+    stack = [start]  # Initialize stack with the starting node
+    visited = set()  # To keep track of visited nodes
+    
+    while stack:
+        node = stack.pop()  # Get the top node
+        if node not in visited:
+            visited.add(node)  # Mark the node as visited
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    stack.append(neighbor)  # Add unvisited neighbors to the stack
+  ```
+
+  Conclusion:
+
+  DFS is a versatile algorithm for graph traversal with numerous applications, from solving mazes and puzzles to understanding complex networks. Its recursive nature makes it intuitive, and it is often favored when exploring depth-first is advantageous.
 
