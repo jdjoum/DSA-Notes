@@ -23,6 +23,7 @@
   19. [Hash Tables](#hash-tables)
   20. [Graphs](#graphs)
   21. [Depth First Search](#depth-first-search)
+  22. [Breadth First Search](#breadth-first-search)
   
 ## What is a Data Structure?
 
@@ -1599,4 +1600,81 @@
   Conclusion:
 
   DFS is a versatile algorithm for graph traversal with numerous applications, from solving mazes and puzzles to understanding complex networks. Its recursive nature makes it intuitive, and it is often favored when exploring depth-first is advantageous.
+
+## Breadth First Search
+
+  **Breadth First Search (BFS)** is an algorithm for traversing or searching graph-like data structures such as trees or graphs. It systematically explores the vertices (or nodes) of a graph, layer by layer, starting from a selected node, known as the source or starting node.
+
+  Key Characteristics:
+
+  - Traversal Order: BFS explores all neighbors of a node before moving on to the next level of nodes. This makes it a "level-order" traversal for trees or graphs.
+  - Queue-Based Approach: BFS uses a queue data structure to keep track of the nodes that need to be explored next. This ensures nodes are explored in the order they are discovered.
+  - Graph Type: BFS works for both directed and undirected graphs and can handle cyclic or acyclic graphs.
+  - Shortest Path (Unweighted Graphs): BFS can be used to find the shortest path from a source node to a target node in an unweighted graph. The path it returns is guaranteed to have the minimum number of edges.
+
+  How BFS Works:
+
+  1. Initialization:
+  - A queue is initialized with the starting node.
+  - A visited list (or set) is maintained to keep track of nodes that have been explored.
+  2. Exploration:
+  - While the queue is not empty, the first node in the queue is dequeued and examined.
+  - All the unvisited neighbors of the dequeued node are discovered, marked as visited, and enqueued.
+  3. Repetition:
+  - This process continues until all reachable nodes have been visited, or until a specific goal node has been found (if BFS is used in a search context).
+
+  Pseudocode:
+  ```
+  BFS(graph, start_node):
+    queue = [start_node]  # Initialize the queue with the start node
+    visited = set()       # Set to track visited nodes
+    visited.add(start_node)
+    
+    while queue:
+        current_node = queue.pop(0)  # Dequeue the first node
+        for neighbor in graph[current_node]:  # Explore all adjacent nodes
+            if neighbor not in visited:
+                visited.add(neighbor)         # Mark as visited
+                queue.append(neighbor)        # Enqueue the neighbor
+  ```
+
+  Example:
+
+  - Consider the following graph represented as an adjacency list:
+  ```
+  graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+  }
+  ```
+  BFS starting from node 'A' would visit the nodes in this order: `A -> B -> C -> D -> E -> F`.
+
+  Visualization:
+
+  ![bfs-visualization](images/bfs-visualization.jpg "BFS Visualization")
+
+  Properties of BFS:
+
+  1. Time Complexity:
+  - In terms of vertices V and edges E, BFS runs in O(V + E), where V is the number of vertices and E is the number of edges.
+  2. Space Complexity:
+  - BFS requires space for the queue, which can hold at most O(V) vertices in the worst case, leading to a space complexity of O(V).
+  3. Applications:
+  - Shortest Path in Unweighted Graphs: BFS is widely used for finding the shortest path in unweighted graphs since the first time a node is visited corresponds to the shortest path.
+  - Connected Components: It can be used to identify all nodes connected to a given node in a graph, helpful in determining the number of connected components.
+  - Web Crawlers: BFS can be used by web crawlers to discover web pages by starting from a single URL and exploring all linked pages.
+  - Level-Order Traversal in Trees: In tree data structures, BFS is used to print nodes level by level.
+  - Peer-to-Peer Networks: BFS helps in finding peers in P2P networks, like in a distributed system where nodes need to find and communicate with other nodes.
+
+  BFS vs. DFS:
+
+  - Traversal Nature: BFS explores level by level, while DFS dives deep into one branch before backtracking.
+  - Space Complexity: BFS uses more space than DFS due to storing nodes in a queue, whereas DFS typically uses recursion (or a stack) which can be more space-efficient depending on the graph.
+  - Path Finding: BFS is preferred for finding the shortest path in unweighted graphs, while DFS can be more suitable for exploring all nodes in deep or complex structures.
+
+  BFS is a fundamental algorithm in graph theory and computer science due to its wide applicability in search problems, network flows, and real-world applications like social networks and recommendation systems.
 
