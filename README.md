@@ -24,6 +24,7 @@
   20. [Graphs](#graphs)
   21. [Depth First Search](#depth-first-search)
   22. [Breadth First Search](#breadth-first-search)
+  23. [Trees](#trees)
   
 ## What is a Data Structure?
 
@@ -1677,4 +1678,83 @@
   - Path Finding: BFS is preferred for finding the shortest path in unweighted graphs, while DFS can be more suitable for exploring all nodes in deep or complex structures.
 
   BFS is a fundamental algorithm in graph theory and computer science due to its wide applicability in search problems, network flows, and real-world applications like social networks and recommendation systems.
+
+## Trees
+
+  A **tree** in computer science is a widely used data structure that simulates a hierarchical structure with a set of linked nodes. It is particularly useful for representing relationships like organizational charts, directory structures, and more.
+
+  Basic Structure of a Tree: 
+
+  - Node: Each element in a tree is called a node. A node contains data and may link to other nodes.
+  - Root: The topmost node in a tree is called the root. It has no parent.
+  - Edge: A connection between two nodes is called an edge. It represents the relationship between nodes.
+  - Child: A node directly connected to another node when moving away from the root is called a child node.
+  - Parent: The node that has a child is called a parent node.
+  Leaf: A node that has no children is called a leaf node.
+  - Subtree: A tree formed by a node and its descendants is called a subtree.
+  - Depth: The depth of a node is the number of edges from the root to the node.
+  - Height: The height of a tree is the length of the path from the root to the deepest node.
+  - Siblings: Nodes that share the same parent are called siblings.
+
+  Visualization:
+
+  ![tree-visualization](images/tree-visualization.png "Tree Visualization")
+
+  Types of Trees:
+
+  - Binary Tree: A tree where each node has at most two children, referred to as the left child and the right child.
+  - Binary Search Tree (BST): A binary tree with the additional property that the left child contains values less than the parent node, and the right child contains values greater than the parent node.
+  - AVL Tree: A self-balancing binary search tree where the difference in height between the left and right subtrees of any node is no more than one.
+  - Red-Black Tree: Another self-balancing binary search tree where nodes are colored red or black to maintain balance, ensuring O(log n) time complexity for search, insert, and delete operations.
+  - B-Tree: A balanced tree often used in databases and file systems. It is a generalized form of the binary search tree where nodes can have more than two children.
+  - N-ary Tree: A tree in which nodes can have up to N children, where N is a predefined number.
+  - Heap: A special tree-based data structure that satisfies the heap property, where a parent node is either greater than or equal to (max heap) or less than or equal to (min heap) its children.
+
+  Tree Traversals:
+
+  - Inorder Traversal (Left, Root, Right): In binary search trees, an inorder traversal visits nodes in increasing order.
+  - Preorder Traversal (Root, Left, Right): Visits the root first, followed by the left subtree, then the right subtree. Useful for copying trees.
+  - Postorder Traversal (Left, Right, Root): Visits all child nodes before the root. Used for deleting trees.
+  - Level-order Traversal: Visits nodes level by level, from left to right, top to bottom.
+
+  Tree Applications:
+
+  - Hierarchical Data Representation: Trees naturally represent hierarchical structures such as file directories, organizational charts, and XML/HTML documents.
+  - Binary Search Trees: Efficiently search for elements in O(log n) time if the tree is balanced, making them useful in databases, compilers, and file systems.
+  - Heaps: Used in priority queues, heapsort algorithms, and graph algorithms like Dijkstra’s shortest path.
+  - Tries: A type of tree used for efficient retrieval of keys in applications like autocomplete, dictionaries, and IP routing.
+  - Decision Trees: Utilized in machine learning to represent decisions and their possible consequences.
+
+  Advantages and Disadvantages:
+
+  - Advantages:
+    - Trees allow hierarchical data organization.
+    - They are efficient in terms of search, insert, and delete operations, especially with balanced trees.
+    - Binary Search Trees offer an average time complexity of O(log n) for search operations.
+    - They are foundational in algorithms, databases, and file systems.
+  - Disadvantages:
+    - Trees can become unbalanced, leading to degraded performance (O(n) in the worst case for a binary search tree).
+    - More complex trees (like AVL, Red-Black) have intricate balancing mechanisms.
+
+  Balanced vs Unbalanced Trees:
+
+  - Balanced Trees: In balanced trees (like AVL, Red-Black), the difference in height between the left and right subtrees is kept minimal to ensure efficient operations.
+  - Unbalanced Trees: In an unbalanced tree, the height of one subtree may be significantly greater than another, leading to inefficiencies in operations such as search, insert, and delete.
+
+  Key Tree Terminologies:
+
+  - Full Tree: Every node has either 0 or 2 children.
+  - Complete Tree: All levels are fully filled except possibly the last, which is filled from left to right.
+  - Perfect Tree: All internal nodes have two children, and all leaves are at the same level.
+
+  Tree Algorithms:
+
+  - Insertion: Adds a node to the tree while maintaining its properties (e.g., binary search tree, AVL tree).
+  - Deletion: Removes a node while maintaining tree properties. Deletion can involve finding a replacement node (like the inorder successor in binary search trees).
+  - Balancing: Self-balancing trees like AVL or Red-Black trees use rotations and re-coloring to maintain balance during insertion and deletion.
+
+  Conclusion:
+
+  Trees are fundamental data structures in computer science that allow efficient data storage, retrieval, and manipulation. They have numerous real-world applications, ranging from file systems to machine learning. The key to their efficiency lies in maintaining balance, ensuring that operations on the tree remain close to O(log n) time complexity.
+  
 
