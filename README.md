@@ -1712,9 +1712,12 @@
 
   Tree Traversals:
 
-  - Inorder Traversal (Left, Root, Right): In binary search trees, an inorder traversal visits nodes in increasing order.
-  - Preorder Traversal (Root, Left, Right): Visits the root first, followed by the left subtree, then the right subtree. Useful for copying trees.
-  - Postorder Traversal (Left, Right, Root): Visits all child nodes before the root. Used for deleting trees.
+  - In-order Traversal (Left, Root, Right): In binary search trees, an inorder traversal visits nodes in increasing order.
+  ![in-order-traversal-visualization](images/in-order-traversal-visualization.png "In-Order Traversal Visualization")
+  - Pre-order Traversal (Root, Left, Right): Visits the root first, followed by the left subtree, then the right subtree. Useful for copying trees.
+  ![pre-order-traversal-visualization](images/pre-order-traversal-visualization.png "Pre-Order Traversal Visualization")
+  - Post-order Traversal (Left, Right, Root): Visits all child nodes before the root. Used for deleting trees.
+  ![post-order-traversal-visualization](images/post-order-traversal-visualization.png "Post-Order Traversal Visualization")
   - Level-order Traversal: Visits nodes level by level, from left to right, top to bottom.
 
   Tree Applications:
@@ -1756,5 +1759,5 @@
   Conclusion:
 
   Trees are fundamental data structures in computer science that allow efficient data storage, retrieval, and manipulation. They have numerous real-world applications, ranging from file systems to machine learning. The key to their efficiency lies in maintaining balance, ensuring that operations on the tree remain close to O(log n) time complexity.
-  
+
 
