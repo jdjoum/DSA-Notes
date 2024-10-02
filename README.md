@@ -25,6 +25,7 @@
   21. [Depth First Search](#depth-first-search)
   22. [Breadth First Search](#breadth-first-search)
   23. [Trees](#trees)
+  24. [Resources](#resources)
   
 ## What is a Data Structure?
 
@@ -1759,5 +1760,11 @@
   Conclusion:
 
   Trees are fundamental data structures in computer science that allow efficient data storage, retrieval, and manipulation. They have numerous real-world applications, ranging from file systems to machine learning. The key to their efficiency lies in maintaining balance, ensuring that operations on the tree remain close to O(log n) time complexity.
+
+## Resources
+
+  - Bro Code [Data Structures and Algorithms Course](https://www.youtube.com/watch?v=CBYHwZcbD-s)
+  - [Big-O Cheat Sheet](https://www.bigocheatsheet.com/) 
+  - [GeeksforGeeks DSA Tutorial](https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/)
 
 
